@@ -6,14 +6,13 @@ using System;
 namespace ToDoList.Tests
 {
   [TestClass]
-  public class CategoryTest
+  public class CategoryTest : IDisposable
   {
-  // public class CategoryTest : IDisposable
-  // {
-    // public void Dispose()
-    // {
-    //   Category.ClearAll();
-    // }
+
+    public void Dispose()
+    {
+      //Category.ClearAll();
+    }
 
     // [TestMethod]
     // public void CategoryConstructor_CreatesInstanceOfCategory_Category()
@@ -35,6 +34,7 @@ namespace ToDoList.Tests
     //   //Assert
     //   Assert.AreEqual(name, result);
     // }
+
     // [TestMethod]
     // public void GetId_ReturnsCategoryId_Int()
     // {
@@ -65,6 +65,7 @@ namespace ToDoList.Tests
     //   //Assert
     //   CollectionAssert.AreEqual(newList, result);
     // }
+
     // [TestMethod]
     // public void Find_ReturnsCorrectCategory_Category()
     // {
@@ -80,6 +81,7 @@ namespace ToDoList.Tests
     //   //Assert
     //   Assert.AreEqual(newCategory2, result);
     // }
+
     // [TestMethod]
     // public void AddItem_AssociatesItemWithCategory_ItemList()
     // {
