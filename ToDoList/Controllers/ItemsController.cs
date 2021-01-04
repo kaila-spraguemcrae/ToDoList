@@ -9,18 +9,15 @@ namespace ToDoList.Controllers
 {
   public class ItemsController : Controller
   {
-    // private readonly ToDoListContext _db;
-
-    // public ItemsController(ToDoListContext db)
-    // {
-    //   _db = db;
-    // }
-
-    // public ActionResult Index()
-    // {
-    //   List<Item> model = _db.Items.Include(items => items.Category).ToList();
-    //   return View(model);
-    // }
+    private readonly ToDoListContext _db;
+    public ItemsController(ToDoListContext db)
+    {
+      _db = db;
+    }
+    public ActionResult Index()
+    {
+      return View(_db.Items.ToList());
+    }
 
     // public ActionResult Create()
     // {
@@ -36,11 +33,14 @@ namespace ToDoList.Controllers
     //   return RedirectToAction("Index");
     // }
 
-    // public ActionResult Details(int id)
-    // {
-    //   Item thisItem = _db.Items.FirstOrDefault(items => items.ItemId == id);
-    //   return View(thisItem);
-    // }
+    public ActionResult Details(int id)
+    {
+      var thisItem = _db.Items
+        .Include(item => item.Categories)
+        .ThenInclude(join => join.Category)
+        .FirstOrDefault(item => item.ItemId == id);
+      return View(thisItem);
+    }
 
     // public ActionResult Edit(int id)
     // {
